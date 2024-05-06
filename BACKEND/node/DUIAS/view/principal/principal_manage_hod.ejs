@@ -1,0 +1,272 @@
+<script>
+    function validation()
+    {
+        var v = /^[a-zA-Z ]+$/
+        if(form1.txtname.value=="")
+        {
+            alert("Please Enter HOD Name");
+            form1.txtname.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtname.value))
+            {
+                alert("Please Enter Only Alphabets in your  HOD Name");
+                form1.txtname.focus();
+                return false;
+            }
+        }
+
+        if(form1.txtadd.value=="")
+        {
+            alert("Please Enter Your Address");
+            form1.txtadd.focus();
+            return false;
+        }
+
+        if(form1.txtcity.value=="")
+        {
+            alert("Please Enter City Name");
+            form1.txtcity.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtcity.value))
+            {
+                alert("Please Enter Only Alphabets in your  City Name");
+                form1.txtcity.focus();
+                return false;
+            }
+        }
+
+        var v = /^[0-9]+$/
+        if(form1.txtmno.value=="")
+        {
+            alert("Please Enter Mobile No");
+            form1.txtmno.focus();
+            return false;
+        }else if(form1.txtmno.value.length!=10)
+        {
+            alert("Please Enter Mobile No 10 Digit Long");
+            form1.txtmno.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtmno.value))
+            {
+                alert("Please Enter Only Digits in your Mobile No");
+                form1.txtmno.focus();
+                return false;
+            }
+        }
+
+        if(form1.gender[0].checked==false)
+        {
+            if(form1.gender[1].checked==false)
+            {
+                alert("Please Select Gender");
+                return false;
+            }
+        }
+
+        var v = /^[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-_]+\.([a-zA-Z]{2,4})+$/
+        if(form1.txtemail.value=="")
+        {
+            alert("Please Enter Email ID");
+            form1.txtemail.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtemail.value))
+            {
+                alert("Please Enter Valid Email ID");
+                form1.txtemail.focus();
+                return false;
+            }
+        }
+
+        if(form1.txtpwd.value=="")
+        {
+            alert("Please Enter Password");
+            form1.txtpwd.focus();
+            return false;
+        }else if(form1.txtpwd.value.length<6)
+        {
+            alert("Please Enter More Than 6 Character");
+            form1.txtpwd.focus();
+            return false;
+        }else if(form1.txtpwd.value.length>10)
+        {
+            alert("Please Enter Less Than 10 Character");
+            form1.txtpwd.focus();
+            return false;
+        }
+
+        if(form1.seldept.value=="0")
+        {
+            alert("Please Select Department");
+            form1.seldept.focus();
+            return false;
+        }
+
+        if(form1.selque.value=="0")
+        {
+            alert("Please Security Question");
+            form1.seldept.focus();
+            return false;
+        }
+
+        if(form1.txtans.value=="")
+        {
+            alert("Please Enter Security Answer");
+            form1.txtans.focus();
+            return false;
+        }
+    }
+</script>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="pageTitle">MANAGE HOD DETAIL</h2>
+			</div>
+		</div>
+	</div>
+	</section>
+	<section id="content">
+	
+	<div class="container">
+	<div class="row">
+								<div class="col-md-6">
+									
+									<div class="contact-form">
+											
+		<form method="post"  id="contactform" class="contact" action="/add_hod" name="form1">
+											
+											<div class="form-group has-feedback">
+												<label>Hod Name</label>
+												<input type="text" class="form-control" name="txtname" placeholder="Enter Hod Name">
+												
+											</div>
+											<div class="form-group has-feedback">
+												<label >Address</label>
+												<textarea class="form-control" name="txtadd" placeholder="Enter Address"></textarea>
+												
+											</div>
+											<div class="form-group has-feedback">
+												<label>City</label>
+												<input type="text" class="form-control" name="txtcity" placeholder="Enter City">
+												
+											</div>
+                                            <div class="form-group has-feedback">
+												<label>Mobile No</label>
+												<input type="text" class="form-control" name="txtmno" placeholder="Enter Mobile No">
+												
+											</div>
+                                           
+                                            <div class="form-group has-feedback">
+                                                <label>Select Gender</label>
+                                                <input type="radio"  name="gender" value="MALE">MALE
+                                                <input type="radio"  name="gender" value="FEMALE">FEMALE
+                                            </div>
+											
+										 
+										
+									</div>
+								</div>
+								<div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label>Email Id</label>
+                                        <input type="text" class="form-control" name="txtemail" placeholder="Enter Email ID">
+                                        
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" name="txtpwd" placeholder="Enter Password">
+                                        
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>Select Department</label>
+
+                                        <select class="form-control" name="seldept">
+                                            <option value="0">Select Department</option>
+                                        <% for(var i=0;i<ditems.length;i++){ %>
+                                                <option value="<%= ditems[i].dep_id %>"><%= ditems[i].dep_name %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>Select Security Question</label>
+
+                                        <select class="form-control" name="selque">
+                                            <option value="0">Select Security Question</option>
+                                            <option value="First School Name">First School Name</option>
+                                            <option value="First Pet Name">First Pet Name</option>
+                                            <option value="Favourite Food">Favourite Food</option>
+                                            <option value="Favourite Color">Favourite Color</option>
+                                            <option value="Favourite Sports">Favourite Sports</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>Security Answer</label>
+                                        <input type="text" class="form-control" name="txtans" placeholder="Enter Security Answer">
+                                        
+                                    </div>
+                                    
+									<input type="submit" value="SAVE" name="btnsave" class="submit btn btn-default" onClick="return validation();">
+								</form>
+								</div>
+
+                                <br/>
+                                <div class="col-md-12">
+                                    <% if(items.length > 0){ %>
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th>HOD ID</th>
+                                                <th>HOD NAME</th>
+                                                <th>ADDRESS</th>
+                                                <th>CITY</th>
+                                                <th>MOBILE NO</th>
+                                                <th>EMAIL ID</th>
+                                                <th>GENDER</th>
+                                                <th>SECURITY QUESTION</th>
+                                                <th>DEPARTMENT NAME</th>
+                                                <th>HOD STATUS</th>
+                                                <th>EDIT</th>
+                                                <th>ACTIVE / DISABLED</th>
+                                            </tr>
+                                        <% for(var i=0;i<items.length ; i++){ %>
+                                                    <tr>
+                                                        <td><%= items[i].hod_id %></td>
+                                                        <td><%= items[i].hod_name %></td>
+                                                        <td><%= items[i].address %></td>
+                                                        <td><%= items[i].city %></td>
+                                                        <td><%= items[i].mobile_no %></td>
+                                                        <td><%= items[i].email_id %></td>
+                                                        <td><%= items[i].gender %></td>
+                                                        <td><%= items[i].security_que %></td>
+                                                        <% for(var j=0;j<ditems.length ; j++){ %>
+                                                                <% if(items[i].dep_id == ditems[j].dep_id) { %>
+                                                                    <td><%= ditems[j].dep_name %></td>
+                                                                <% } %>            
+                                                        <% } %>
+                                                        <% if(items[i].hod_status=="0"){ %>
+                                                            <td style="color: green;">ACTIVE</td>
+                                                            <td><a class="btn btn-primary" style="background-color: lightblue;" href="/principal_edit_hod/<%= items[i].hod_id %>">EDIT</a></td>
+                                                            <td><a href="/inactive_hod/<%= items[i].hod_id %>" class="btn btn-danger" style="background-color: red;"> INACTIVE</a></td>
+                                                        <% }else{ %>
+                                                            <td style="color: red;">INACTIVE</td>
+                                                            <td><a class="btn btn-primary" style="background-color: lightblue;" href="/principal_edit_hod/<%= items[i].hod_id %>">EDIT</a></td>
+                                                            <td><a href="/active_hod/<%= items[i].hod_id %>" class="btn btn-success" style="background-color: green;"> ACTIVE</a></td>
+                                                        <% } %>
+                                                        
+
+                                                    </tr>
+                                            <% } %>
+                                        </table>
+                                <% } %>
+                                </div>
+							</div>
+	</div>
+ 
+	</section>

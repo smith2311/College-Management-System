@@ -1,0 +1,108 @@
+<script>
+    function validation()
+    {
+        var v = /^[a-zA-Z ]+$/
+        if(form1.txtname.value=="")
+        {
+            alert("Please Enter Program Name");
+            form1.txtname.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtname.value))
+            {
+                alert("Please Enter Only Alphabets in your  Program Name");
+                form1.txtname.focus();
+                return false;
+            }
+        }
+
+		if(form1.seldept.value=="0")
+        {
+            alert("Please Enter Department");
+            form1.seldept.focus();
+            return false;
+        }
+    }
+</script>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="pageTitle">MANAGE PROGRAM</h2>
+			</div>
+		</div>
+	</div>
+	</section>
+	<section id="content">
+	
+	<div class="container">
+	<div class="row">
+								<div class="col-md-6">
+									
+									<div class="contact-form">
+											
+		<form method="post"  id="contactform" class="contact" action="/add_program" name="form1">
+											
+											<div class="form-group has-feedback">
+												<label for="email">Program Name</label>
+												<input type="text" class="form-control" name="txtname" placeholder="Enter Program Name">
+											</div>
+											
+											<div class="form-group has-feedback">
+												<label>Select Department</label>
+		
+												<select class="form-control" name="seldept">
+													<option value="0">Select Department</option>
+												<% for(var i=0;i<ditems.length;i++){ %>
+														<option value="<%= ditems[i].dep_id %>"><%= ditems[i].dep_name %></option>
+													<% } %>
+												</select>
+											</div>
+											
+											<input type="submit" value="SAVE" name="btnsave" class="submit btn btn-default" onClick="return validation();">
+										</form>
+										 
+										
+									</div>
+								</div>
+								<div class="col-md-6">
+									<% if(items.length > 0){ %>
+											<table class="table table-bordered">
+												<tr>
+													<th>PROGRAM ID</th>
+													<th>PROGRAM NAME</th>
+													<th>DEPARTMENT NAME</th>
+													<th>PROGRAM STATUS</th>
+													<th>EDIT</th>
+													<th>ACTIVE / DISABLED</th>
+												</tr>
+											<% for(var i=0;i<items.length ; i++){ %>
+														<tr>
+															<td><%= items[i].program_id %></td>
+															<td><%= items[i].program_name %></td>
+															<% for(var j=0;j<ditems.length ; j++){ %>
+                                                                <% if(items[i].dep_id == ditems[j].dep_id) { %>
+                                                                    <td><%= ditems[j].dep_name %></td>
+                                                                <% } %>            
+                                                        <% } %>
+															<% if(items[i].program_status=="0"){ %>
+																<td style="color: green;">ACTIVE</td>
+																<td><a class="btn btn-primary" style="background-color: lightblue;" href="/clerk_edit_program/<%= items[i].program_id %>">EDIT</a></td>
+																<td><a href="/inactive_program/<%= items[i].program_id %>" class="btn btn-danger" style="background-color: red;"> INACTIVE</a></td>
+															<% }else{ %>
+																<td style="color: red;">INACTIVE</td>
+																<td><a class="btn btn-primary" style="background-color: lightblue;" href="/clerk_edit_program/<%= items[i].program_id %>">EDIT</a></td>
+																<td><a href="/active_program/<%= items[i].program_id %>" class="btn btn-success" style="background-color: green;"> ACTIVE</a></td>
+															<% } %>
+															
+
+														</tr>
+												<% } %>
+											</table>
+									<% } %>
+								</div>
+							</div>
+	</div>
+ 
+	</section>

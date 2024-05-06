@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textSize="34dp"
+                android:text="CHANGE PASSWORD"
+                android:textColor="@color/blue_200"
+                android:textStyle="bold" />
+            <EditText
+                android:id="@+id/edt_opwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+
+                android:background="@drawable/border"
+                android:layout_marginTop="20dp"
+                android:hint="Enter Old Password"
+                android:textColor="@color/black"
+                />
+            <EditText
+                android:id="@+id/edt_npwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+
+                android:background="@drawable/border"
+                android:layout_marginTop="20dp"
+                android:hint="Enter New Password"
+                android:textColor="@color/black"
+                />
+
+
+
+            <EditText
+                android:id="@+id/edt_cpwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+
+                android:background="@drawable/border"
+                android:layout_marginTop="20dp"
+                android:hint="Enter Confirm Password"
+                android:textColor="@color/black"
+                />
+
+            <Button
+                android:id="@+id/button_change"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/blue_200"
+                android:text="CHANGE PASSWORD"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

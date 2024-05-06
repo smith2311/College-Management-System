@@ -1,0 +1,133 @@
+<script>
+    function validation()
+    {
+        var v = /^[a-zA-Z0-9 ]*$/
+        if(form1.txtname.value=="")
+        {
+            alert("Please Enter Subject Name");
+            form1.txtname.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtname.value))
+            {
+                alert("Please Enter Only Alphabets in your Subject Name");
+                form1.txtname.focus();
+                return false;
+            }
+        }
+
+        if(form1.selprogram.value=="0")
+        {
+            alert("Please Select Program");
+            form1.selprogram.focus();
+            return false;
+        }
+
+       
+
+        var v = /^[0-9]+$/
+        if(form1.txtcode.value=="")
+        {
+            alert("Please Enter Subject Code");
+            form1.txtcode.focus();
+            return false;
+        }
+        else
+        {
+            if(!v.test(form1.txtcode.value))
+            {
+                alert("Please Enter Only Digits in your Subject Code");
+                form1.txtcode.focus();
+                return false;
+            }
+        }
+
+        if(form1.selsem.value=="0")
+        {
+            alert("Please Select Semester");
+            form1.selsem.focus();
+            return false;
+        }
+    }
+</script>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="pageTitle">MANAGE SUBJECT DETAIL</h2>
+			</div>
+		</div>
+	</div>
+	</section>
+	<section id="content">
+	
+	<div class="container">
+	<div class="row">
+								<div class="col-md-6">
+									
+									<div class="contact-form">
+											
+		<form method="post"  id="contactform" class="contact" action="/update_subject" name="form1">
+											
+											<div class="form-group has-feedback">
+												<label>Subject Name</label>
+												<input type="text" class="form-control" name="txtname" placeholder="Enter Subject Name" value="<%= items[0].sub_name %>">
+												
+											</div>
+											<div class="form-group has-feedback">
+                                                <label>Select Program</label>
+        
+                                                <select class="form-control" name="selprogram">
+
+                                                    <option value="0">Select Program</option>
+                                                    <% for(var i=0;i<pitems.length;i++){ %>
+                                                        <option value="<%= pitems[i].program_id %>" <% if(pitems[i].program_id == items[0].program_id) { %> selected="selected" <% } %> >
+                                                            <%= pitems[i].program_name %>
+                                                        </option>
+                                                        <% } %>
+                                                </select>
+                                            </div>
+											<div class="form-group has-feedback">
+												<label>Subject Code</label>
+												<input type="text" class="form-control" name="txtcode" placeholder="Enter Subject Code" value="<%= items[0].sub_code %>">
+												
+											</div>
+                                            <div class="form-group has-feedback">
+                                                <label>Select Semester</label>
+        
+                                                <select class="form-control" name="selsem">
+                                                    <option value="SEM1" <% if(items[0].semester === "SEM1") { %> selected="selected" <% } %> >SEM 1</option>
+                                            <option value="SEM2" <% if(items[0].semester === "SEM2") { %> selected="selected" <% } %> >SEM 2</option>
+                                            <option value="SEM3" <% if(items[0].semester === "SEM3") { %> selected="selected" <% } %> >SEM 3</option>
+                                            <option value="SEM4" <% if(items[0].semester === "SEM4") { %> selected="selected" <% } %> >SEM 4</option>
+                                            <option value="SEM5" <% if(items[0].semester === "SEM5") { %> selected="selected" <% } %> >SEM 5</option>
+                                            <option value="SEM6" <% if(items[0].semester === "SEM6") { %> selected="selected" <% } %> >SEM 6</option>
+                                            <option value="SEM7" <% if(items[0].semester === "SEM7") { %> selected="selected" <% } %> >SEM 7</option>
+                                            <option value="SEM8" <% if(items[0].semester === "SEM8") { %> selected="selected" <% } %> >SEM 8</option>
+                                                </select>
+                                            </div>
+                                           
+                                            <input type="submit" value="UPDATE" name="btnupdate" class="submit btn btn-default" onClick="return validation();">
+                                            <input type="hidden" value="<%= items[0].sub_id %>" name="txtsid">
+                                        </form>
+											
+										 
+										
+									</div>
+								</div>
+								<div class="col-md-8">
+                                 
+                                    
+                                   
+									
+								</div>
+
+                                <br/>
+                                <div class="col-md-12">
+                                
+                                </div>
+							</div>
+	</div>
+ 
+	</section>

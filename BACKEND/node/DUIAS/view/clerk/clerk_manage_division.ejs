@@ -1,0 +1,189 @@
+<script>
+    function validation()
+    {
+        var v = /^[0-9]{4,4}\-[0-9]{4,4}$/
+        if(form1.txtayear.value=="")
+        {
+            alert("Please Enter Academic Year");
+            form1.txtayear.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtayear.value))
+            {
+                alert("Please Enter Only Digits and hyphen Sign in Academic Year");
+                form1.txtayear.focus();
+                return false;
+            }
+        }
+
+        if(form1.selprogram.value=="0")
+        {
+            alert("Please Select Program");
+            form1.selprogram.focus();
+            return false;
+        }
+
+        var v = /^[a-zA-Z ]+$/
+        if(form1.txtcname.value=="")
+        {
+            alert("Please Enter Class Name");
+            form1.txtcname.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtcname.value))
+            {
+                alert("Please Enter Only Alphabets in your  Class Name");
+                form1.txtcname.focus();
+                return false;
+            }
+        }
+        var v = /^[a-zA-Z]{1,1}$/
+        if(form1.txtdiv.value=="")
+        {
+            alert("Please Enter Division");
+            form1.txtdiv.focus();
+            return false;
+        }else{
+            if(!v.test(form1.txtdiv.value))
+            {
+                alert("Please Enter Only One Character in Division ");
+                form1.txtdiv.focus();
+                return false;
+            }
+        }
+
+        if(form1.selsem.value=="0")
+        {
+            alert("Please Select Semester");
+            form1.selsem.focus();
+            return false;
+        }
+
+    }
+</script>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="pageTitle">MANAGE DIVISION DETAIL</h2>
+			</div>
+		</div>
+	</div>
+	</section>
+	<section id="content">
+	
+	<div class="container">
+	<div class="row">
+								<div class="col-md-6">
+									
+									<div class="contact-form">
+											
+		<form method="post"  id="contactform" class="contact" action="/add_div" name="form1">
+											
+											<div class="form-group has-feedback">
+												<label>Academic Year</label>
+												<input type="text" class="form-control" name="txtayear" placeholder="Enter Academic Year">
+												
+											</div>
+                                            <div class="form-group has-feedback">
+                                                <label>Select Program</label>
+        
+                                                <select class="form-control" name="selprogram">
+                                                    <option value="0">Select Program</option>
+                                                <% for(var i=0;i<pitems.length;i++){ %>
+                                                        <option value="<%= pitems[i].program_id %>"><%= pitems[i].program_name %></option>
+                                                    <% } %>
+                                                </select>
+                                            </div>
+                                            <div class="form-group has-feedback">
+												<label>Enter Class Name</label>
+												<input type="text" class="form-control" name="txtcname" placeholder="Enter Class Name">
+												
+											</div>
+                                           
+                                           
+                                           
+											
+										 
+										
+									</div>
+								</div>
+								<div class="col-md-6">
+                                   
+                                    <div class="form-group has-feedback">
+                                        <label>Enter Division</label>
+                                        <input type="text" class="form-control" name="txtdiv" placeholder="Enter Division">
+                                        
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>Select Semester</label>
+
+                                        <select class="form-control" name="selsem">
+                                            <option value="0">Select Semester</option>
+                                            <option value="SEM1">SEM 1</option>
+                                            <option value="SEM2">SEM 2</option>
+                                            <option value="SEM3">SEM 3</option>
+                                            <option value="SEM4">SEM 4</option>
+                                            <option value="SEM5">SEM 5</option>
+                                            <option value="SEM6">SEM 6</option>
+                                            <option value="SEM7">SEM 7</option>
+                                            <option value="SEM8">SEM 8</option>
+                                        </select>
+                                    </div>
+                                    
+                                    
+									<input type="submit" value="SAVE" name="btnsave" class="submit btn btn-default" onClick="return validation();">
+								</form>
+								</div>
+
+                                <br/>
+                                <div class="col-md-12">
+                                    <% if(items.length > 0){ %>
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th>DIVISION ID</th>
+                                                <th>ACADEMIC YEAR</th>
+                                                <th>PROGRAM NAME</th>
+                                                <th>CLASS NAME</th>
+                                                <th>SEMESTER</th>
+                                                <th>DIVISION</th>
+                                                
+                                                <th>DIVISION STATUS</th>
+                                                <th>EDIT</th>
+                                                <th>ACTIVE / DISABLED</th>
+                                            </tr>
+                                        <% for(var i=0;i<items.length ; i++){ %>
+                                                    <tr>
+                                                        <td><%= items[i].div_id %></td>
+                                                        <td><%= items[i].academic_year %></td>
+                                                        <% for(var j=0;j<pitems.length ; j++){ %>
+                                                            <% if(items[i].program_id == pitems[j].program_id) { %>
+                                                                <td><%= pitems[j].program_name %></td>
+                                                            <% } %>            
+                                                    <% } %>
+                                                        <td><%= items[i].class_name %></td>
+                                                        <td><%= items[i].semester %></td>
+                                                        <td><%= items[i].division %></td>
+                                                        
+                                                        <% if(items[i].div_status=="0"){ %>
+                                                            <td style="color: green;">ACTIVE</td>
+                                                            <td><a class="btn btn-primary" style="background-color: lightblue;" href="/clerk_edit_division/<%= items[i].div_id %>">EDIT</a></td>
+                                                            <td><a href="/inactive_div/<%= items[i].div_id %>" class="btn btn-danger" style="background-color: red;"> INACTIVE</a></td>
+                                                        <% }else{ %>
+                                                            <td style="color: red;">INACTIVE</td>
+                                                            <td><a class="btn btn-primary" style="background-color: lightblue;" href="/clerk_edit_division/<%= items[i].div_id %>">EDIT</a></td>
+                                                            <td><a href="/active_div/<%= items[i].div_id %>" class="btn btn-success" style="background-color: green;"> ACTIVE</a></td>
+                                                        <% } %>
+                                                        
+
+                                                    </tr>
+                                            <% } %>
+                                        </table>
+                                <% } %>
+                                </div>
+							</div>
+	</div>
+ 
+	</section>

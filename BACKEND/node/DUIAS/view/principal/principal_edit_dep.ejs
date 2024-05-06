@@ -1,0 +1,60 @@
+<script>
+    function validation()
+    {
+        var v = /^[a-zA-Z ]+$/
+        if(form1.txtname.value=="")
+        {
+            alert("Please Enter Department Name");
+            form1.txtname.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtname.value))
+            {
+                alert("Please Enter Only Alphabets in your  Department Name");
+                form1.txtname.focus();
+                return false;
+            }
+        }
+    }
+</script>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="pageTitle">MANAGE DEPARTMENT</h2>
+			</div>
+		</div>
+	</div>
+	</section>
+	<section id="content">
+	
+	<div class="container">
+	<div class="row">
+								<div class="col-md-6">
+									
+									<div class="contact-form">
+										<% for(var i=0;i<items.length;i++) { %>	
+		<form method="post"  id="contactform" class="contact" action="/update_dept" name="form1">
+											
+											<div class="form-group has-feedback">
+												<label for="email">Department Name</label>
+												<input type="text" class="form-control" name="txtname" placeholder="Enter Department Name" value="<%= items[0].dep_name %>">
+												
+											</div>
+											
+											
+											<input type="submit" value="EDIT" name="btnedit" class="submit btn btn-default" onClick="return validation();">
+                                            <input type="hidden" value="<%= items[i].dep_id %>" name="txtdpid">
+										</form>
+										 
+										<% } %>
+									</div>
+								</div>
+								<div class="col-md-6">
+									
+								</div>
+							</div>
+	</div>
+ 
+	</section>

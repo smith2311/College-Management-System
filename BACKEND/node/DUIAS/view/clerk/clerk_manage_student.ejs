@@ -1,0 +1,326 @@
+<script>
+    function show(value)
+    {
+		datastring="sem="+value+'&pid='+form1.selprogram.value;
+		$.ajax({
+				type: "POST",
+				url: "filldropdown",
+				data: datastring,
+				success: function(responseText){$("#seldiv").html(responseText);}
+			});
+    }
+    function validation() {
+        var v = /^[a-zA-Z ]+$/
+        if (form1.txtname.value == "") {
+            alert("Please Enter HOD Name");
+            form1.txtname.focus();
+            return false;
+        }
+        else {
+            if (!v.test(form1.txtname.value)) {
+                alert("Please Enter Only Alphabets in your  HOD Name");
+                form1.txtname.focus();
+                return false;
+            }
+        }
+
+        if (form1.txtadd.value == "") {
+            alert("Please Enter Your Address");
+            form1.txtadd.focus();
+            return false;
+        }
+
+        if (form1.txtcity.value == "") {
+            alert("Please Enter City Name");
+            form1.txtcity.focus();
+            return false;
+        }
+        else {
+            if (!v.test(form1.txtcity.value)) {
+                alert("Please Enter Only Alphabets in your  City Name");
+                form1.txtcity.focus();
+                return false;
+            }
+        }
+
+        var v = /^[0-9]+$/
+        if (form1.txtmno.value == "") {
+            alert("Please Enter Mobile No");
+            form1.txtmno.focus();
+            return false;
+        } else if (form1.txtmno.value.length != 10) {
+            alert("Please Enter Mobile No 10 Digit Long");
+            form1.txtmno.focus();
+            return false;
+        }
+        else {
+            if (!v.test(form1.txtmno.value)) {
+                alert("Please Enter Only Digits in your Mobile No");
+                form1.txtmno.focus();
+                return false;
+            }
+        }
+
+        if (form1.gender[0].checked == false) {
+            if (form1.gender[1].checked == false) {
+                alert("Please Select Gender");
+                return false;
+            }
+        }
+
+        var v = /^[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-_]+\.([a-zA-Z]{2,4})+$/
+        if (form1.txtemail.value == "") {
+            alert("Please Enter Email ID");
+            form1.txtemail.focus();
+            return false;
+        }
+        else {
+            if (!v.test(form1.txtemail.value)) {
+                alert("Please Enter Valid Email ID");
+                form1.txtemail.focus();
+                return false;
+            }
+        }
+
+        if (form1.txtpwd.value == "") {
+            alert("Please Enter Password");
+            form1.txtpwd.focus();
+            return false;
+        } else if (form1.txtpwd.value.length < 6) {
+            alert("Please Enter More Than 6 Character");
+            form1.txtpwd.focus();
+            return false;
+        } else if (form1.txtpwd.value.length > 10) {
+            alert("Please Enter Less Than 10 Character");
+            form1.txtpwd.focus();
+            return false;
+        }
+
+        if (form1.selprogram.value == "0") {
+            alert("Please Select Program");
+            form1.selprogram.focus();
+            return false;
+        }
+
+        var v = /^[a-zA-Z ]+$/
+        if (form1.txtcname.value == "") {
+            alert("Please Enter Class Name");
+            form1.txtcname.focus();
+            return false;
+        }else {
+            if (!v.test(form1.txtcname.value)) {
+                alert("Please Enter Only Alphabets in your  Class Name");
+                form1.txtcname.focus();
+                return false;
+            }
+        }
+
+        if (form1.selsem.value == "0") {
+            alert("Please Select Semester");
+            form1.selsem.focus();
+            return false;
+        }
+
+        if (form1.seldiv.value == "0") {
+            alert("Please Select Division");
+            form1.seldiv.focus();
+            return false;
+        }
+    }
+</script>
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="pageTitle">MANAGE STUDENT DETAIL</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="contact-form">
+
+                    <form method="post" id="contactform" class="contact" action="/add_student" name="form1">
+                        <div class="form-group has-feedback">
+                            <label>Roll No</label>
+                            <input type="text" class="form-control" name="txtrno" placeholder="Enter Roll No">
+
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Student Name</label>
+                            <input type="text" class="form-control" name="txtname" placeholder="Enter Student Name">
+
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Address</label>
+                            <textarea class="form-control" name="txtadd" placeholder="Enter Address"></textarea>
+
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>City</label>
+                            <input type="text" class="form-control" name="txtcity" placeholder="Enter City">
+
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Mobile No</label>
+                            <input type="text" class="form-control" name="txtmno" placeholder="Enter Mobile No">
+
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label>Select Gender</label>
+                            <input type="radio" name="gender" value="MALE">MALE
+                            <input type="radio" name="gender" value="FEMALE">FEMALE
+                        </div>
+
+
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-feedback">
+                    <label>Email Id</label>
+                    <input type="text" class="form-control" name="txtemail" placeholder="Enter Email ID">
+
+                </div>
+                <div class="form-group has-feedback">
+                    <label>Date Of Birth</label>
+                    
+                    <input type="date" class="form-control" name="txtdob" value="<%= lbdate %>" max="<%= lbdate %>">
+                </div>
+                
+                <div class="form-group has-feedback">
+                    <label>Select Program</label>
+
+                    <select class="form-control" name="selprogram">
+                        <option value="0">Select Program</option>
+                        <% for(var i=0;i<pitems.length;i++){ %>
+                            <option value="<%= pitems[i].program_id %>">
+                                <%= pitems[i].program_name %>
+                            </option>
+                            <% } %>
+                    </select>
+                </div>
+                <div class="form-group has-feedback">
+                    <label>Class Name</label>
+                    <input type="text" class="form-control" name="txtcname" placeholder="Enter Class Name">
+
+                </div>
+                <div class="form-group has-feedback">
+                    <label>Select Semester</label>
+
+                    <select class="form-control" name="selsem" onchange="show(this.value)">
+                        <option value="0">Select Semester</option>
+                        <option value="SEM1">SEM1</option>
+                        <option value="SEM2">SEM2</option>
+                        <option value="SEM3">SEM3</option>
+                        <option value="SEM4">SEM4</option>
+                        <option value="SEM5">SEM5</option>
+                        <option value="SEM6">SEM6</option>
+                        <option value="SEM7">SEM7</option>
+                        <option value="SEM8">SEM8</option>
+                    </select>
+                </div>
+                
+                <div class="form-group has-feedback">
+                    <label>Select Division</label>
+
+                    <select class="form-control" name="seldiv" id="seldiv">
+                        <option value="0">Select Division</option>
+                        
+                    </select>
+                </div>
+
+
+                <input type="submit" value="SAVE" name="btnsave" class="submit btn btn-default"
+                    onClick="return validation();">
+                </form>
+            </div>
+
+            <br />
+            <div class="col-md-12">
+                <% if(items.length> 0){ %>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>STUDENT ID</th>
+                            <th>ROLL NO</th>
+                            <th>STUDENT NAME</th>
+                            <th>ADDRESS</th>
+                            <th>CITY</th>
+                            <th>MOBILE NO</th>
+                            <th>EMAIL ID</th>
+                            <th>GENDER</th>
+                            <th>PROGRAM NAME</th>
+                            <th>CLASS NAME</th>
+                            <th>SEMESTER</th>
+                            <th>DIVISION</th>
+                            <th>EDIT</th>
+                            
+                        </tr>
+                        <% for(var i=0;i<items.length ; i++){ %>
+                            <tr>
+                                <td>
+                                    <%= items[i].stud_id %>
+                                </td>
+                                <td>
+                                    <%= items[i].rno %>
+                                </td>
+                                <td>
+                                    <%= items[i].stud_name %>
+                                </td>
+                                <td>
+                                    <%= items[i].address %>
+                                </td>
+                                <td>
+                                    <%= items[i].city %>
+                                </td>
+                                <td>
+                                    <%= items[i].mobile_no %>
+                                </td>
+                                <td>
+                                    <%= items[i].email_id %>
+                                </td>
+                                <td>
+                                    <%= items[i].gender %>
+                                </td>
+                                <% for(var j=0;j<pitems.length ; j++){ %>
+                                    <% if(items[i].program_id==pitems[j].program_id) { %>
+                                        <td>
+                                            <%= pitems[j].program_name %>
+                                        </td>
+                                    <% } %>
+                                <% } %>
+                                <td>
+                                    <%= items[i].class_name %>
+                                </td>
+                                <td>
+                                    <%= items[i].semester %>
+                                </td>
+                                <% for(var j=0;j<divitems.length ; j++){ %>
+                                    <% if(items[i].div_id==divitems[j].div_id) { %>
+                                        <td>
+                                            <%= divitems[j].division %>
+                                        </td>
+                                    <% } %>
+                                <% } %>
+                               <td>
+                                <a class="btn btn-primary" style="background-color: lightblue;"
+                                                                href="/clerk_edit_student/<%= items[i].stud_id %>">EDIT</a>
+                               </td>
+                                                      
+
+
+                            </tr>
+                            <% } %>
+                    </table>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+
+</section>

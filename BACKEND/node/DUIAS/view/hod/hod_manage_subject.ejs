@@ -1,0 +1,175 @@
+<script>
+    function validation()
+    {
+        var v = /^[a-zA-Z0-9 ]*$/
+        if(form1.txtname.value=="")
+        {
+            alert("Please Enter Subject Name");
+            form1.txtname.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtname.value))
+            {
+                alert("Please Enter Only Alphabets in your Subject Name");
+                form1.txtname.focus();
+                return false;
+            }
+        }
+
+        if(form1.selprogram.value=="0")
+        {
+            alert("Please Select Program");
+            form1.selprogram.focus();
+            return false;
+        }
+
+       
+
+        var v = /^[0-9]+$/
+        if(form1.txtcode.value=="")
+        {
+            alert("Please Enter Subject Code");
+            form1.txtcode.focus();
+            return false;
+        }
+        else
+        {
+            if(!v.test(form1.txtcode.value))
+            {
+                alert("Please Enter Only Digits in your Subject Code");
+                form1.txtcode.focus();
+                return false;
+            }
+        }
+
+        if(form1.selsem.value=="0")
+        {
+            alert("Please Select Semester");
+            form1.selsem.focus();
+            return false;
+        }
+    }
+</script>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="pageTitle">MANAGE SUBJECT DETAIL</h2>
+			</div>
+		</div>
+	</div>
+	</section>
+	<section id="content">
+	
+	<div class="container">
+	<div class="row">
+								<div class="col-md-4">
+									
+									<div class="contact-form">
+											
+		<form method="post"  id="contactform" class="contact" action="/add_subject" name="form1">
+											
+											<div class="form-group has-feedback">
+												<label>Subject Name</label>
+												<input type="text" class="form-control" name="txtname" placeholder="Enter Subject Name">
+												
+											</div>
+											<div class="form-group has-feedback">
+                                                <label>Select Program</label>
+        
+                                                <select class="form-control" name="selprogram">
+                                                    <option value="0">Select Program</option>
+                                                <% for(var i=0;i<pitems.length;i++){ %>
+                                                        <option value="<%= pitems[i].program_id %>"><%= pitems[i].program_name %></option>
+                                                    <% } %>
+                                                </select>
+                                            </div>
+											<div class="form-group has-feedback">
+												<label>Subject Code</label>
+												<input type="text" class="form-control" name="txtcode" placeholder="Enter Subject Code">
+												
+											</div>
+                                            <div class="form-group has-feedback">
+                                                <label>Select Semester</label>
+        
+                                                <select class="form-control" name="selsem">
+                                                    <option value="0">Select Semester</option>
+                                                    <option value="SEM1">SEM1</option>
+                                                    <option value="SEM2">SEM2</option>
+                                                    <option value="SEM3">SEM3</option>
+                                                    <option value="SEM4">SEM4</option>
+                                                    <option value="SEM5">SEM5</option>
+                                                    <option value="SEM6">SEM6</option>
+                                                    <option value="SEM7">SEM7</option>
+                                                    <option value="SEM8">SEM8</option>
+                                                </select>
+                                            </div>
+                                           
+                                            <input type="submit" value="SAVE" name="btnsave" class="submit btn btn-default" onClick="return validation();">
+                                        </form>
+											
+										 
+										
+									</div>
+								</div>
+								<div class="col-md-8">
+                                    <% if(items.length> 0){ %>
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th>SUBJECT ID</th>
+                                                <th>SUBJECT NAME</th>
+                                                <th>PROGRAM NAME</th>
+                                                <th>SUBJECT CODE</th>
+                                                <th>SEMESTER</th>
+                                                <th>SUBJECT STATUS</th>
+                                                <th>EDIT</th>
+                                                
+                                            </tr>
+                                            <% for(var i=0;i<items.length ; i++){ %>
+                                                <tr>
+                                                    <td>
+                                                        <%= items[i].sub_id %>
+                                                    </td>
+                                                    <td>
+                                                        <%= items[i].sub_name %>
+                                                    </td>
+                                                    <% for(var j=0;j<pitems.length ; j++){ %>
+                                                        <% if(items[i].program_id==pitems[j].program_id) { %>
+                                                            <td>
+                                                                <%= pitems[j].program_name %>
+                                                            </td>
+                                                        <% } %>
+                                                    <% } %>
+                                                    <td>
+                                                        <%= items[i].sub_code %>
+                                                    </td>
+                                                   
+                                                    <td>
+                                                        <%= items[i].semester %>
+                                                    </td>
+                                                    
+                                                    <% if(items[i].sub_status=="0"){ %>
+                                                        <td style="color: green;">ACTIVE</td>
+                                                        <td><a class="btn btn-primary" style="background-color: lightblue;" href="/hod_edit_subject/<%= items[i].sub_id %>">EDIT</a></td>
+                                                        <td><a href="/inactive_subject/<%= items[i].sub_id %>" class="btn btn-danger" style="background-color: red;"> INACTIVE</a></td>
+                                                    <% }else{ %>
+                                                        <td style="color: red;">INACTIVE</td>
+                                                        <td><a class="btn btn-primary" style="background-color: lightblue;" href="/hod_edit_subject/<%= items[i].sub_id %>">EDIT</a></td>
+                                                        <td><a href="/active_subject/<%= items[i].sub_id %>" class="btn btn-success" style="background-color: green;"> ACTIVE</a></td>
+                                                    <% } %>
+                                                </tr>
+                                                <% } %>
+                                        </table>
+                                        <% } %> 
+                      
+								</div>
+
+                                <br/>
+                                <div class="col-md-12">
+                                
+                                </div>
+							</div>
+	</div>
+ 
+	</section>

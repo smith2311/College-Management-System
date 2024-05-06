@@ -1,0 +1,224 @@
+<script>
+    function show(value)
+    {
+		datastring="sem="+value+'&pid='+form1.selprogram.value;
+		$.ajax({
+				type: "POST",
+				url: "filldropdown",
+				data: datastring,
+				success: function(responseText){$("#seldiv").html(responseText);}
+			});
+
+           
+    }
+    function validation() {
+        
+       
+
+        if (form1.selprogram.value == "0") {
+            alert("Please Select Program");
+            form1.selprogram.focus();
+            return false;
+        }
+
+        if (form1.selsem.value == "0") {
+            alert("Please Select Semester");
+            form1.selsem.focus();
+            return false;
+        }
+
+        if (form1.seldiv.value == "0") {
+            alert("Please Select Division");
+            form1.seldiv.focus();
+            return false;
+        }
+        if (form1.selsub.value == "0") {
+            alert("Please Select Subject");
+            form1.selsub.focus();
+            return false;
+        }
+
+        var v = /^[0-9]+$/
+        if (form1.txtno.value == "") {
+            alert("Please Enter Total No of Assignment");
+            form1.txtno.focus();
+            return false;
+        }else if(form1.txtno.value.length!=1)
+        {
+            alert("Please Enter Only 1 Digits in Total No of Assignment");
+            form1.txtno.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtno.value))
+            {
+                alert("Please Enter Only Digits in Total No of Assignment");
+                form1.txtno.focus();
+                return false;
+            }
+        }
+
+      
+    }
+</script>
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="pageTitle">MANAGE ASSIGNMENT DETAIL</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="contact-form">
+
+                    <form method="post" id="contactform" class="contact" action="/faculty_add_assign_marks" name="form1">
+                       
+                        <div class="form-group has-feedback">
+                            <label>Select Program</label>
+        
+                            <select class="form-control" name="selprogram">
+                                <option value="0">Select Program</option>
+                                <% for(var i=0;i<pitems.length;i++){ %>
+                                    <option value="<%= pitems[i].program_id %>">
+                                        <%= pitems[i].program_name %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Select Semester</label>
+        
+                            <select class="form-control" name="selsem" onchange="show(this.value)">
+                                <option value="0">Select Semester</option>
+                                <option value="SEM1">SEM1</option>
+                                <option value="SEM2">SEM2</option>
+                                <option value="SEM3">SEM3</option>
+                                <option value="SEM4">SEM4</option>
+                                <option value="SEM5">SEM5</option>
+                                <option value="SEM6">SEM6</option>
+                                <option value="SEM7">SEM7</option>
+                                <option value="SEM8">SEM8</option>
+                            </select>
+                        </div>
+                        
+                       
+                        
+                        <div class="form-group has-feedback">
+                            <label>Select Division</label>
+        
+                            <select class="form-control" name="seldiv" id="seldiv">
+                                <option value="0">Select Division</option>
+                                
+                            </select>
+                        </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                
+                
+                <div class="form-group has-feedback">
+                    <label>Select Subject</label>
+
+                    <select class="form-control" name="selsub" id="selsub">
+                        <option value="0">Select Subject</option>
+                        <% for(var i=0;i<subitems.length;i++){ %>
+                            <option value="<%= subitems[i].sub_id %>">
+                                <%= subitems[i].sub_name %>
+                            </option>
+                            <% } %>
+                    </select>
+                </div>
+                <div class="form-group has-feedback">
+                    <label>Total No of Assignment </label>
+                    <input type="text" class="form-control" name="txtno" placeholder="Enter Total No of Assignment">
+
+                </div>
+                
+                    <input type="submit" value="SAVE" name="btnsave" class="submit btn btn-default"
+                    onClick="return validation();">
+                </form>
+            </div>
+
+            <br />
+            <div class="col-md-12">
+                <% if(items.length> 0){ %>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>ASSIGNMENT ID</th>
+                            
+                            <th>PROGRAM NAME</th>
+                            
+                            <th>SEMESTER</th>
+                            <th>DIVISION</th>
+                            <th>SUBJECT NAME</th>
+
+                            <th>NO OF ASSIGNMENT</th>
+                                                  
+                            <th>VIEW ASSIGNMENT MARKS</th>
+                            <th>DELETE</th>
+                            
+                        </tr>
+                        <% for(var i=0;i<items.length ; i++){ %>
+                            <tr>
+                                <td>
+                                    <%= items[i].assign_id %>
+                                </td>
+                                
+                                <% for(var j=0;j<pitems.length ; j++){ %>
+                                    <% if(items[i].program_id==pitems[j].program_id) { %>
+                                        <td>
+                                            <%= pitems[j].program_name %>
+                                        </td>
+                                    <% } %>
+                                <% } %>
+                                <td>
+                                    <%= items[i].semester %>
+                                </td>
+                                <% for(var j=0;j<divitems.length ; j++){ %>
+                                    <% if(items[i].div_id==divitems[j].div_id) { %>
+                                        <td>
+                                            <%= divitems[j].division %>
+                                        </td>
+                                    <% } %>
+                                <% } %>
+
+                                <% for(var j=0;j<subitems.length ; j++){ %>
+                                    <% if(items[i].sub_id==subitems[j].sub_id) { %>
+                                        <td>
+                                            <%= subitems[j].sub_name %>
+                                        </td>
+                                    <% } %>
+                                <% } %>
+
+                                <td>
+                                    <%= items[i].no_of_assign %>
+                                </td>
+                                
+                              
+                               <td>
+                                <a class="btn btn-primary" style="background-color: lightblue;"
+                                                                href="/faculty_manage_assign_marks_detail/<%= items[i].assign_id %>">VIEW ASSIGNMENT MARKS</a>
+                               </td>
+                               <td>
+                                <a class="btn btn-primary" style="background-color: lightblue;"
+                                                                href="/faculty_delete_assign_detail/<%= items[i].assign_id %>">DELETE</a>
+                               </td>                     
+
+
+                            </tr>
+                            <% } %>
+                    </table>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+
+</section>

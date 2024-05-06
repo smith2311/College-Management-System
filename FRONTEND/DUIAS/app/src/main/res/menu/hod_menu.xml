@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Manage Subject"
+            android:id="@+id/manage_subject"
+            />
+
+        <item android:title="Change Password"
+            android:id="@+id/change_pwd"
+            />
+        <item android:title="View Attendace"
+            android:id="@+id/view_attendance"
+            />
+        <item android:title="View Assignment"
+            android:id="@+id/view_assignment"
+            />
+        <item android:title="View Internal Marks"
+            android:id="@+id/view_internal_marks"
+            />
+        <item android:title="Logout"
+            android:id="@+id/logout"
+            />
+    </group>
+</menu>

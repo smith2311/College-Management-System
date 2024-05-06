@@ -1,0 +1,105 @@
+<script>
+    function validation()
+    {
+        if(form1.txtopwd.value=="")
+        {
+            alert("Please Enter Old Password");
+            form1.txtopwd.focus();
+            return false;
+        }else if(form1.txtopwd.value.length<6)
+        {
+            alert("Please Enter More Than 6 Character in old Password");
+            form1.txtopwd.focus();
+            return false;
+        }else if(form1.txtopwd.value.length>10)
+        {
+            alert("Please Enter Less Than 10 Character old Password");
+            form1.txtopwd.focus();
+            return false;
+        }
+
+
+       
+        if(form1.txtnpwd.value=="")
+        {
+            alert("Please Enter New Password");
+            form1.txtnpwd.focus();
+            return false;
+        }else if(form1.txtnpwd.value.length<6)
+        {
+            alert("Please Enter More Than 6 Character in New Password");
+            form1.txtnpwd.focus();
+            return false;
+        }else if(form1.txtnpwd.value.length>10)
+        {
+            alert("Please Enter Less Than 10 Character New Password");
+            form1.txtnpwd.focus();
+            return false;
+        }else if(form1.txtopwd.value==form1.txtnpwd.value)
+        {
+            alert("Dont Repeat Old Password Into New Password");
+            form1.txtnpwd.focus();
+            return false;
+        }
+     
+
+        if(form1.txtcpwd.value!=form1.txtnpwd.value)
+        {
+            alert("Please Enter Confirm Password same as old password");
+            form1.txtcpwd.focus();
+            return false;
+        }
+    }
+</script>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="pageTitle">CHANGE PASSWORD</h2>
+			</div>
+		</div>
+	</div>
+	</section>
+	<section id="content">
+	
+	<div class="container">
+	<div class="row">
+								<div class="col-md-4">
+									
+									<div class="contact-form">
+											
+		<form method="post"  id="contactform" class="contact" action="/change_pwd" name="form1">
+											
+											<div class="form-group has-feedback">
+												<label>Old Password</label>
+												<input type="password" class="form-control" name="txtopwd" placeholder="Enter Old Password">
+												
+											</div>
+											<div class="form-group has-feedback">
+												<label>New Password</label>
+												<input type="password" class="form-control" name="txtnpwd" placeholder="Enter New Password">
+												
+											</div>
+											<div class="form-group has-feedback">
+												<label>Confirm Password</label>
+												<input type="password" class="form-control" name="txtcpwd" placeholder="Enter Confirm Password">
+												
+											</div>
+                                          
+                                           
+                                            <input type="submit" value="CHANGE PASSWORD" name="btnpwd" class="submit btn btn-default" onClick="return validation();">
+                                        </form>
+											
+										 
+										
+									</div>
+								</div>
+							
+                                <br/>
+                                <div class="col-md-12">
+                                
+                                </div>
+							</div>
+	</div>
+ 
+	</section>

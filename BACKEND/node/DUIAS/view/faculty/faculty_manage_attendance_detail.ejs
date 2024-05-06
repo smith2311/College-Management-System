@@ -1,0 +1,129 @@
+<script>
+    function show(value)
+    {
+		datastring="sem="+value+'&pid='+form1.selprogram.value;
+		$.ajax({
+				type: "POST",
+				url: "filldropdown",
+				data: datastring,
+				success: function(responseText){$("#seldiv").html(responseText);}
+			});
+
+           
+    }
+    function validation() {
+        
+        if (form1.sellno.value == "") {
+            alert("Please Select Lecture No");
+            form1.sellno.focus();
+            return false;
+        }
+       
+
+
+        if (form1.selprogram.value == "0") {
+            alert("Please Select Program");
+            form1.selprogram.focus();
+            return false;
+        }
+
+        if (form1.selsem.value == "") {
+            alert("Please Select Semester");
+            form1.selsem.focus();
+            return false;
+        }
+
+        if (form1.seldiv.value == "0") {
+            alert("Please Select Division");
+            form1.seldiv.focus();
+            return false;
+        }
+        if (form1.selsub.value == "0") {
+            alert("Please Select Subject");
+            form1.selsub.focus();
+            return false;
+        }
+
+        if (form1.txtltime.value == "") {
+            alert("Please Enter Lecture Time");
+            form1.txtltime.focus();
+            return false;
+        }
+    }
+</script>
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="pageTitle">ATTENDANCE DETAIL</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+
+    <div class="container">
+        <div class="row">
+            
+            <br />
+            <div class="col-md-12">
+                <% if(items.length> 0){ %>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>ATTENDANCE ID</th>
+                            <th>STUDENT ID</th>
+                            <th>ROLL NO</th>
+                            <th>STUDENT NAME</th>
+                            <th>PRESENT/ABSENT</th>
+                            
+                            <th></th>
+                            
+                        </tr>
+                        <% for(var i=0;i<items.length ; i++){ %>
+                            <tr>
+                                <td>
+                                    <%= items[i].attend_id %>
+                                </td>
+                                <td>
+                                    <%= items[i].stud_id %>
+                                </td>
+                                <td>
+                                    <%= items[i].rno %>
+                                </td>
+                                <% for(var j=0;j<sitems.length ; j++){ %>
+                                    <% if(items[i].stud_id==sitems[j].stud_id) { %>
+                                        <td>
+                                            <%= sitems[j].stud_name %>
+                                        </td>
+                                    <% } %>
+                                <% } %>
+                              
+                                <% if(items[i].present_absent=="P"){ %>
+                                    <td style="color:green;"><b>PRESENT</b></td>
+                                    <td>
+                                        <a class="btn btn-primary" style="background-color: red;"
+                                                                        href="/absent_student/<%= items[i].attend_id %>/<%= items[i].stud_id %>">ABSENT</a>
+                                       </td>
+                                    <% }else{ %>
+                                        <td style="color:red;"><b>ABSENT</b></td>
+                                        <td>
+                                            <a class="btn btn-primary" style="background-color: green;"
+                                                                            href="/present_student/<%= items[i].attend_id %>/<%= items[i].stud_id %>">PRESENT</a>
+                                           </td>
+                                    <% } %>
+
+                                
+                              
+                               
+                               
+
+
+                            </tr>
+                            <% } %>
+                    </table>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+
+</section>

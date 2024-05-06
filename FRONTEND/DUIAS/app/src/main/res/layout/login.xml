@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:srcCompat="@drawable/logo1" />
+
+            <EditText
+                android:id="@+id/edt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+
+                android:background="@drawable/border"
+                android:layout_marginTop="20dp"
+                android:hint="Enter Email ID"
+                android:textColor="@color/black"
+                />
+
+            <EditText
+                android:id="@+id/edt_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPassword"
+
+                android:background="@drawable/border"
+                android:layout_marginTop="20dp"
+                android:hint="Enter Password"
+                android:textColor="@color/black"
+                />
+
+            <Spinner
+                android:id="@+id/spinner_utype"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:shadowRadius="2"
+                android:shadowColor="#0000ff"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:background="@drawable/borderspinner"
+                android:layout_marginTop="20dp"
+                />
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:text="LOGIN"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/blue_200"
+
+                />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,110 @@
+<script>
+
+</script>
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="pageTitle">MANAGE INTERNAL MARKS</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+
+    <div class="container">
+        <div class="row">
+            
+            <form method="post"  class="contact" action="/faculty_update_assignment_marks" >
+                <% for(var i=0;i<items.length;i++){ %>
+                    <div class="col-md-2">
+    
+                        <div class="contact-form">
+        
+                            
+                              
+                              
+                        <div class="form-group has-feedback">
+                            <label>Student ID</label>
+                            <input type="text" class="form-control" name="txtstudid[]" value="<% for(var j=0;j<sitems.length ; j++){ %><% if(items[i].stud_id==sitems[j].stud_id) { %><%= sitems[j].stud_id %><%}%><% } %>" readonly>
+        
+                        </div> 
+                               
+                                
+                               
+                                
+                             
+        
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+    
+                        <div class="contact-form">
+          
+                        <div class="form-group has-feedback">
+                            <label>Assignment No</label>
+                            <input type="text" class="form-control" name="txtano[]" value="<%= items[i].assign_no  %>" readonly>
+        
+                        </div> 
+                      
+                        </div>
+                    </div>
+                <div class="col-md-2">
+    
+                    <div class="contact-form">
+    
+                        
+                          
+                          
+                    <div class="form-group has-feedback">
+                        <label>Student Name</label>
+                        <input type="text" class="form-control" name="txtname[]" placeholder="Enter Obtained Marks" value="<% for(var j=0;j<sitems.length ; j++){ %><% if(items[i].stud_id==sitems[j].stud_id) { %><%= sitems[j].stud_name %><%}%><% } %>" readonly>
+    
+                    </div> 
+                           
+                            
+                           
+                            
+                         
+    
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    
+                    
+                   
+                    <div class="form-group has-feedback mt-8">
+                        <label>ASSIGNMENT RECEIVED OR NOT</label>
+                      <select class="form-control" name="selar[]">
+                            <option value="Y" <% if(items[i].assign_received=="Y"){ %>selected='selected' <% } %>>RECEIVED</option>
+                            <option value="N" <% if(items[i].assign_received=="N"){ %>selected='selected' <% } %>>NOT RECEIVED</option>
+                        </select>
+                    </div>
+                    
+                       
+                </div>
+                <div class="col-md-3">
+                    
+                    
+                   
+                    <div class="form-group has-feedback">
+                        <label>Obtained Marks</label>
+                        <input type="text" class="form-control" name="txtomark[]" placeholder="Enter Obtained Marks" value="<%= items[i].marks %>">
+    
+                    </div>
+                    
+                       
+                </div>
+                <% } %>
+            <input type="hidden" value="<%= aid %>" name="txtaid">
+            <input type="submit" value="UPDATE" name="btnupdate" class="submit btn btn-default">
+            </form>
+            <br />
+        
+            <div class="col-md-12">
+             
+            </div>
+        </div>
+    </div>
+
+</section>

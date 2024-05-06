@@ -1,0 +1,231 @@
+<script>
+    function validation()
+    {
+        var v = /^[a-zA-Z ]+$/
+        if(form1.txtname.value=="")
+        {
+            alert("Please Enter HOD Name");
+            form1.txtname.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtname.value))
+            {
+                alert("Please Enter Only Alphabets in your  HOD Name");
+                form1.txtname.focus();
+                return false;
+            }
+        }
+
+        if(form1.txtadd.value=="")
+        {
+            alert("Please Enter Your Address");
+            form1.txtadd.focus();
+            return false;
+        }
+
+        if(form1.txtcity.value=="")
+        {
+            alert("Please Enter City Name");
+            form1.txtcity.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtcity.value))
+            {
+                alert("Please Enter Only Alphabets in your  City Name");
+                form1.txtcity.focus();
+                return false;
+            }
+        }
+
+        var v = /^[0-9]+$/
+        if(form1.txtmno.value=="")
+        {
+            alert("Please Enter Mobile No");
+            form1.txtmno.focus();
+            return false;
+        }else if(form1.txtmno.value.length!=10)
+        {
+            alert("Please Enter Mobile No 10 Digit Long");
+            form1.txtmno.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtmno.value))
+            {
+                alert("Please Enter Only Digits in your Mobile No");
+                form1.txtmno.focus();
+                return false;
+            }
+        }
+
+        if(form1.gender[0].checked==false)
+        {
+            if(form1.gender[1].checked==false)
+            {
+                alert("Please Select Gender");
+                return false;
+            }
+        }
+
+        var v = /^[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-_]+\.([a-zA-Z]{2,4})+$/
+        if(form1.txtemail.value=="")
+        {
+            alert("Please Enter Email ID");
+            form1.txtemail.focus();
+            return false;
+        }
+        else{
+            if(!v.test(form1.txtemail.value))
+            {
+                alert("Please Enter Valid Email ID");
+                form1.txtemail.focus();
+                return false;
+            }
+        }
+
+        if(form1.txtpwd.value=="")
+        {
+            alert("Please Enter Password");
+            form1.txtpwd.focus();
+            return false;
+        }else if(form1.txtpwd.value.length<6)
+        {
+            alert("Please Enter More Than 6 Character");
+            form1.txtpwd.focus();
+            return false;
+        }else if(form1.txtpwd.value.length>10)
+        {
+            alert("Please Enter Less Than 10 Character");
+            form1.txtpwd.focus();
+            return false;
+        }
+
+        if(form1.seldept.value=="0")
+        {
+            alert("Please Select Department");
+            form1.seldept.focus();
+            return false;
+        }
+
+        if(form1.selque.value=="0")
+        {
+            alert("Please Security Question");
+            form1.seldept.focus();
+            return false;
+        }
+
+        if(form1.txtans.value=="")
+        {
+            alert("Please Enter Security Answer");
+            form1.txtans.focus();
+            return false;
+        }
+    }
+</script>
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2 class="pageTitle">MANAGE DEPARTMENT</h2>
+			</div>
+		</div>
+	</div>
+	</section>
+	<section id="content">
+	
+	<div class="container">
+	<div class="row">
+        <% for(var i=0;i<items.length;i++) { %>	
+								<div class="col-md-6">
+									
+									<div class="contact-form">
+											
+		<form method="post"  id="contactform" class="contact" action="/update_hod" name="form1">
+											
+											<div class="form-group has-feedback">
+												<label>Hod Name</label>
+												<input type="text" class="form-control" name="txtname" placeholder="Enter Hod Name" value="<%= items[0].hod_name %>">
+												
+											</div>
+											<div class="form-group has-feedback">
+												<label >Address</label>
+												<textarea class="form-control" name="txtadd" placeholder="Enter Address"><%= items[0].address %></textarea>
+												
+											</div>
+											<div class="form-group has-feedback">
+												<label>City</label>
+												<input type="text" class="form-control" name="txtcity" placeholder="Enter City" value="<%= items[0].city %>">
+												
+											</div>
+                                            <div class="form-group has-feedback">
+												<label>Mobile No</label>
+												<input type="text" class="form-control" name="txtmno" placeholder="Enter Mobile No" value="<%= items[0].mobile_no %>">
+												
+											</div>
+                                           
+                                            <div class="form-group has-feedback">
+                                                <label>Select Gender</label>
+                                                <input type="radio"  name="gender" value="MALE" <% if(items[i].gender==="MALE"){ %> checked <% } %> >MALE
+                                                <input type="radio"  name="gender" value="FEMALE" <% if(items[i].gender==="FEMALE"){ %> checked <% } %> >FEMALE
+                                            </div>
+											
+										 
+										
+									</div>
+								</div>
+								<div class="col-md-6">
+                                    <div class="form-group has-feedback">
+                                        <label>Email Id</label>
+                                        <input type="text" class="form-control" name="txtemail" placeholder="Enter Email ID" value="<%= items[0].email_id %>">
+                                        
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" name="txtpwd" placeholder="Enter Password" value="<%= items[0].pwd %>">
+                                        
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>Select Department</label>
+
+                                        <select class="form-control" name="seldept">
+                                            <option value="0">Select Department</option>
+                                        <% for(var j=0;j<ditems.length;j++){ %>
+                                                
+                                                <option value="<%= ditems[j].dep_id %>"  <% if(ditems[j].dep_id == items[i].dep_id) { %> selected="selected" <% } %>   ><%= ditems[j].dep_name %></option>
+                                            <% } %>
+                                        </select>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>Select Security Question</label>
+
+                                        <select class="form-control" name="selque">
+                                            <option value="0">Select Security Question</option>
+                                            <option value="First School Name" <% if(items[i].security_que == "First School Name") { %> selected="selected" <% } %> >First School Name</option>
+                                            <option value="First Pet Name" <% if(items[i].security_que == "First Pet Name") { %> selected="selected" <% } %> >First Pet Name</option>
+                                            <option value="Favourite Food" <% if(items[i].security_que == "Favourite Food") { %> selected="selected" <% } %> >Favourite Food</option>
+                                            <option value="Favourite Color" <% if(items[i].security_que == "Favourite Color") { %> selected="selected" <% } %> >Favourite Color</option>
+                                            <option value="Favourite Sports" <% if(items[i].security_que == "Favourite Sports") { %> selected="selected" <% } %> >Favourite Sports</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>Security Answer</label>
+                                        <input type="text" class="form-control" name="txtans" placeholder="Enter Security Answer" value="<%= items[i].security_ans %>">
+                                        
+                                    </div>
+                                    
+									<input type="submit" value="EDIT" name="btnedit" class="submit btn btn-default" onClick="return validation();">
+                                    <input type="hidden" value="<%= items[i].hod_id %>" name="txthodid">
+								</form>
+								</div>
+                        <% } %>
+                                <br/>
+                                <div class="col-md-12">
+                                  
+                                </div>
+
+							</div>
+	</div>
+ 
+	</section>

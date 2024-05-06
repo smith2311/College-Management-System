@@ -1,0 +1,277 @@
+<style>
+    .hidden1{
+        display: none;
+    }
+</style>
+<script>
+    
+    function show(value)
+    {
+		datastring="sem="+value+'&pid='+form1.selprogram.value;
+		$.ajax({
+				type: "POST",
+				url: "/filldropdown",
+				data: datastring,
+				success: function(responseText){
+                    $("#seldiv").remove();
+                    $("#seldiv").addClass("hidden1");
+                    $("#seldiv1").removeAttr("style");
+                    $("#seldiv1").html(responseText);
+                }
+			});
+    }
+    function validation()
+    {   
+       
+     var v = /^[a-zA-Z ]+$/
+        if (form1.txtname.value == "") {
+            alert("Please Enter HOD Name");
+            form1.txtname.focus();
+            return false;
+        }
+        else {
+            if (!v.test(form1.txtname.value)) {
+                alert("Please Enter Only Alphabets in your  HOD Name");
+                form1.txtname.focus();
+                return false;
+            }
+        }
+
+        if (form1.txtadd.value == "") {
+            alert("Please Enter Your Address");
+            form1.txtadd.focus();
+            return false;
+        }
+
+        if (form1.txtcity.value == "") {
+            alert("Please Enter City Name");
+            form1.txtcity.focus();
+            return false;
+        }
+        else {
+            if (!v.test(form1.txtcity.value)) {
+                alert("Please Enter Only Alphabets in your  City Name");
+                form1.txtcity.focus();
+                return false;
+            }
+        }
+
+        var v = /^[0-9]+$/
+        if (form1.txtmno.value == "") {
+            alert("Please Enter Mobile No");
+            form1.txtmno.focus();
+            return false;
+        } else if (form1.txtmno.value.length != 10) {
+            alert("Please Enter Mobile No 10 Digit Long");
+            form1.txtmno.focus();
+            return false;
+        }
+        else {
+            if (!v.test(form1.txtmno.value)) {
+                alert("Please Enter Only Digits in your Mobile No");
+                form1.txtmno.focus();
+                return false;
+            }
+        }
+
+        if (form1.gender[0].checked == false) {
+            if (form1.gender[1].checked == false) {
+                alert("Please Select Gender");
+                return false;
+            }
+        }
+
+        var v = /^[a-zA-Z0-9.-_]+@[a-zA-Z0-9.-_]+\.([a-zA-Z]{2,4})+$/
+        if (form1.txtemail.value == "") {
+            alert("Please Enter Email ID");
+            form1.txtemail.focus();
+            return false;
+        }
+        else {
+            if (!v.test(form1.txtemail.value)) {
+                alert("Please Enter Valid Email ID");
+                form1.txtemail.focus();
+                return false;
+            }
+        }
+
+        if (form1.txtpwd.value == "") {
+            alert("Please Enter Password");
+            form1.txtpwd.focus();
+            return false;
+        } else if (form1.txtpwd.value.length < 6) {
+            alert("Please Enter More Than 6 Character");
+            form1.txtpwd.focus();
+            return false;
+        } else if (form1.txtpwd.value.length > 10) {
+            alert("Please Enter Less Than 10 Character");
+            form1.txtpwd.focus();
+            return false;
+        }
+
+        if (form1.selprogram.value == "0") {
+            alert("Please Select Program");
+            form1.selprogram.focus();
+            return false;
+        }
+
+        var v = /^[a-zA-Z ]+$/
+        if (form1.txtcname.value == "") {
+            alert("Please Enter Class Name");
+            form1.txtcname.focus();
+            return false;
+        }else {
+            if (!v.test(form1.txtcname.value)) {
+                alert("Please Enter Only Alphabets in your  Class Name");
+                form1.txtcname.focus();
+                return false;
+            }
+        }
+
+        if (form1.selsem.value == "0") {
+            alert("Please Select Semester");
+            form1.selsem.focus();
+            return false;
+        }
+
+        if (form1.seldiv.value == "0") {
+            alert("Please Select Division");
+            form1.seldiv.focus();
+            return false;
+        }
+    }
+
+</script>
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="pageTitle">EDIT STUDENT DETAIL</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="contact-form">
+
+                    <form method="post" id="contactform" class="contact" action="/update_student" name="form1">
+                        <div class="form-group has-feedback">
+                            <label>Roll No</label>
+                            <input type="text" class="form-control" name="txtrno" placeholder="Enter Roll No" value="<%= items[0].rno %>">
+
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Student Name</label>
+                            <input type="text" class="form-control" name="txtname" placeholder="Enter Student Name" value="<%= items[0].stud_name %>">
+
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Address</label>
+                            <textarea class="form-control" name="txtadd" placeholder="Enter Address"><%= items[0].address %></textarea>
+
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>City</label>
+                            <input type="text" class="form-control" name="txtcity" placeholder="Enter City" value="<%= items[0].city %>">
+
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label>Mobile No</label>
+                            <input type="text" class="form-control" name="txtmno" placeholder="Enter Mobile No" value="<%= items[0].mobile_no %>">
+
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label>Select Gender</label>
+                            <input type="radio"  name="gender" value="MALE" <% if(items[0].gender==="MALE"){ %> checked <% } %> >MALE
+                                                <input type="radio"  name="gender" value="FEMALE" <% if(items[0].gender==="FEMALE"){ %> checked <% } %> >FEMALE
+                        </div>
+
+
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-feedback">
+                    <label>Email Id</label>
+                    <input type="text" class="form-control" name="txtemail" placeholder="Enter Email ID" value="<%= items[0].email_id %>">
+
+                </div>
+                <div class="form-group has-feedback">
+                    <label>Date Of Birth</label>
+                    
+                    <input type="date" class="form-control" name="txtdob" value="<%= items[0].dob %>">
+                </div>
+                
+                <div class="form-group has-feedback">
+                    <label>Select Program</label>
+
+                    <select class="form-control" name="selprogram">
+                        <option value="0">Select Program</option>
+                        <% for(var i=0;i<pitems.length;i++){ %>
+                            <option value="<%= pitems[i].program_id %>" <% if(pitems[i].program_id == items[0].program_id) { %> selected="selected" <% } %> >
+                                <%= pitems[i].program_name %>
+                            </option>
+                            <% } %>
+                    </select>
+                    
+                </div>
+                <div class="form-group has-feedback">
+                    <label>Class Name</label>
+                    <input type="text" class="form-control" name="txtcname" placeholder="Enter Class Name" value="<%= items[0].class_name %>" >
+
+                </div>
+                <div class="form-group has-feedback">
+                    <label>Select Semester</label>
+
+                    <select class="form-control" name="selsem" onchange="show(this.value)">
+                        <option value="0">Select Semester</option>
+                        <option value="SEM1" <% if(items[0].semester === "SEM1") { %> selected="selected" <% } %> >SEM 1</option>
+                                            <option value="SEM2" <% if(items[0].semester === "SEM2") { %> selected="selected" <% } %> >SEM 2</option>
+                                            <option value="SEM3" <% if(items[0].semester === "SEM3") { %> selected="selected" <% } %> >SEM 3</option>
+                                            <option value="SEM4" <% if(items[0].semester === "SEM4") { %> selected="selected" <% } %> >SEM 4</option>
+                                            <option value="SEM5" <% if(items[0].semester === "SEM5") { %> selected="selected" <% } %> >SEM 5</option>
+                                            <option value="SEM6" <% if(items[0].semester === "SEM6") { %> selected="selected" <% } %> >SEM 6</option>
+                                            <option value="SEM7" <% if(items[0].semester === "SEM7") { %> selected="selected" <% } %> >SEM 7</option>
+                                            <option value="SEM8" <% if(items[0].semester === "SEM8") { %> selected="selected" <% } %> >SEM 8</option>
+                    </select>
+
+                </div>
+                
+                <div class="form-group has-feedback">
+                    <label>Select Division</label>
+                    
+                    <select class="form-control" name="seldiv" id="seldiv">
+                        <option value="0">Select Division</option>
+                        <% for(var i=0;i<divitems.length;i++){ %>
+                            <option value="<%= divitems[i].div_id %>" <% if(divitems[i].div_id == items[0].div_id) { %> selected="selected" <% } %> >
+                                <%= divitems[i].division %>
+                            </option>
+                            <% } %>
+                    </select>
+                    <select class="form-control" name="seldiv" id="seldiv1" style="display:none;">
+                        
+                        
+                    </select>
+                </div>
+
+
+                <input type="submit" value="EDIT" name="btnedit" class="submit btn btn-default"
+                    onClick="return validation();">
+                    <input type="hidden" value="<%= items[0].stud_id %>" name="txtsid">
+                </form>
+            </div>
+
+            <br />
+            <div class="col-md-12">
+               
+            </div>
+        </div>
+    </div>
+
+</section>

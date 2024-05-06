@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:background="@color/orange_400"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:background="@color/orange_400"
+        android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:background="@color/orange_400"
+            android:orientation="vertical">
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/tvaid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        />
+
+                </TableRow>
+
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/tvfname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/tvpname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        />
+
+                </TableRow>
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/tvsname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        />
+
+                </TableRow>
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/tvsem"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        />
+
+                </TableRow>
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/tvnassign"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/tvdiv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        />
+
+                </TableRow>
+
+
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/btnview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:textSize="20dp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="VIEW MARKS"
+                        android:backgroundTint="@color/black"
+                        />
+
+                </TableRow>
+
+
+            </TableLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
