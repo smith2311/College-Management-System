@@ -12,7 +12,12 @@ NOTE: MAKE SURE THAT YOUR LAPTOP/PC IS CONNECTED TO THE HOTSPOT OF YOUR MOBILE
 
 5)CLICK ON RUN BY CONNECTING YOUR VIRTUAL DEVICE/ PHYSICAL DEVICE...
 
-6) WAIT FOR A SOMETIME, WHILE THE APP INSTALLS IN YOUR DEVICE
+6) Make Sure you have imported the .sql file to the directory where your database and tables are being stored, What i prfer is using xampp server phpmyadmin
+    upload the sql file to the xampp phpmyadmin
+
+7) WAIT FOR A SOMETIME, WHILE THE APP INSTALLS IN YOUR DEVICE
+
+
 
 
              ***************THANK YOU********************
